@@ -151,6 +151,12 @@ impl<T> QueueCore<T> {
 }
 
 impl<T: TaskCell + Send> QueueCore<T> {
+    pub fn injector_length(&self) -> usize {
+        self.global_queue.len()
+    }
+}
+
+impl<T: TaskCell + Send> QueueCore<T> {
     /// Pushes the task to global queue.
     ///
     /// `source` is used to trace who triggers the action.
@@ -190,6 +196,10 @@ impl<T: TaskCell + Send> Remote<T> {
 
     pub(crate) fn stop(&self) {
         self.core.mark_shutdown(0);
+    }
+
+    pub(crate) fn injector_length(&self) -> usize {
+        self.core.injector_length()
     }
 }
 

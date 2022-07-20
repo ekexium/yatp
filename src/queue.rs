@@ -59,6 +59,13 @@ impl<T: TaskCell + Send> TaskInjector<T> {
             InjectorInner::Multilevel(_) => Extras::multilevel_default(),
         }
     }
+
+    pub(crate) fn len(&self) -> usize {
+        match &self.0 {
+            InjectorInner::SingleLevel(q) => q.len(),
+            InjectorInner::Multilevel(q) => q.len(),
+        }
+    }
 }
 
 /// Popped task cell from a task queue.

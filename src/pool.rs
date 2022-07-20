@@ -72,6 +72,10 @@ impl<T: TaskCell + Send> ThreadPool<T> {
     pub fn remote(&self) -> &Remote<T> {
         &self.remote
     }
+
+    pub fn injector_length(&self) -> usize {
+        self.remote.injector_length()
+    }
 }
 
 impl<T: TaskCell + Send> Drop for ThreadPool<T> {

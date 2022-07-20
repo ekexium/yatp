@@ -39,6 +39,10 @@ where
         set_schedule_time(&mut task_cell);
         self.0.push(task_cell);
     }
+
+    pub(crate) fn len(&self) -> usize {
+        self.0.len()
+    }
 }
 
 /// The local queue of a single level work stealing task queue.

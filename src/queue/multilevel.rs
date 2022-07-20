@@ -78,6 +78,14 @@ where
         let level = task_cell.mut_extras().current_level as usize;
         self.level_injectors[level].push(task_cell);
     }
+
+    pub(crate) fn len(&self) -> usize {
+        self.level_injectors
+            .iter()
+            .map(|injector| injector.len())
+            .max()
+            .unwrap_or(0)
+    }
 }
 
 /// The local queue of a multilevel task queue.
